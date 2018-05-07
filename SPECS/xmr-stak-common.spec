@@ -12,8 +12,9 @@ URL:		https://github.com/fireice-uk/xmr-stak
 Source0:	xmr-stak-%{xmrversion}.tar.gz
 
 # note this requires source scl_source enable devtoolset-7 before running rpmbuild
-BuildRequires:	cmake3 devtoolset-7-gcc-c++ devtoolset-7-libstdc++-devel libmicrohttpd-devel openssl hwloc
-Requires:	devtoolset-7-runtime libmicrohttpd openssl-devel hwloc-devel
+BuildRequires:	cmake3 devtoolset-7-gcc-c++ devtoolset-7-libstdc++-devel libmicrohttpd-devel openssl-devel hwloc-devel
+Requires:	libmicrohttpd openssl hwloc
+#devtoolset-7-runtime
 
 %description
 Unified All-in-one Monero miner.
