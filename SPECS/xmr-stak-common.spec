@@ -11,10 +11,16 @@ License:	GPLv3
 URL:		https://github.com/fireice-uk/xmr-stak
 Source0:	xmr-stak-%{xmrversion}.tar.gz
 
+%if 0%{?rhel}
 # note this requires source scl_source enable devtoolset-7 before running rpmbuild
-BuildRequires:	cmake3 devtoolset-7-gcc-c++ devtoolset-7-libstdc++-devel libmicrohttpd-devel openssl-devel hwloc-devel
-Requires:	libmicrohttpd openssl hwloc
-#devtoolset-7-runtime
+BuildRequires:	cmake3 devtoolset-7-gcc-c++ devtoolset-7-libstdc++-devel libmicrohttpd-devel openssl-devel hwloc-devel %{?xmrvariantbuildreqs}
+Requires:	libmicrohttpd openssl hwloc %{?xmrvariantreqs}
+%endif
+
+%if 0%{?fedora}
+BuildRequires:	cmake3 gcc-c++ libstdc++-devel libmicrohttpd-devel openssl-devel hwloc-devel %{?xmrvariantbuildreqs}
+Requires:	libmicrohttpd openssl hwloc %{?xmrvariantreqs}
+%endif
 
 %description
 Unified All-in-one Monero miner.
@@ -24,6 +30,12 @@ Unified All-in-one Monero miner.
 sed -i "s/fDevDonationLevel = 2.0/fDevDonationLevel = %{xmrdonation}/" xmrstak/donate-level.hpp
 
 %build
+%if 0%{?fedora} && "%{xmrvariant}" == "nvidia"
+CC=cuda-gcc
+CXX=cuda-g++
+export CC CXX
+%endif
+
 cmake3 %{xmrbuildflags} .
 make
 
