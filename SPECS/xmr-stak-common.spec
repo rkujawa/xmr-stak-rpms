@@ -1,4 +1,4 @@
-%define xmrversion 2.4.3
+%define xmrversion 2.10.7
 %define xmrdonation 2.0
 
 Name:		xmr-stak-%{xmrvariant}
