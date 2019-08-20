@@ -11,6 +11,9 @@ License:	GPLv3
 URL:		https://github.com/fireice-uk/xmr-stak
 Source0:	xmr-stak-%{xmrversion}.tar.gz
 
+# in theory it would be best to add -g to gcc, to generate debuginfo packages later, however fuck CMake
+%define debug_package %{nil}
+
 %if 0%{?rhel}
 # note this requires source scl_source enable devtoolset-7 before running rpmbuild
 BuildRequires:	cmake3 devtoolset-7-gcc-c++ devtoolset-7-libstdc++-devel libmicrohttpd-devel openssl-devel hwloc-devel %{?xmrvariantbuildreqs}
