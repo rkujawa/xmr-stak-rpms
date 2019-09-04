@@ -3,7 +3,7 @@
 
 Name:		xmr-stak-%{xmrvariant}
 Version:	%{xmrversion}	
-Release:	1%{?dist}
+Release:	2%{?dist}
 Summary:	Unified All-in-one Monero miner.
 
 Group:		System Environment/Base	
